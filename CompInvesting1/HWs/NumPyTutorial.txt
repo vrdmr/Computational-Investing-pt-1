@@ -1,0 +1,232 @@
+Last login: Thu Sep 12 10:59:51 on ttys001
+Varads-MacBook:~ varadmeru$ cd QSTK/
+Varads-MacBook:QSTK varadmeru$ ls
+Examples	Examples.zip
+Varads-MacBook:QSTK varadmeru$ mkdir NumPyTutorial
+Varads-MacBook:QSTK varadmeru$ cd NumPyTutorial/
+Varads-MacBook:NumPyTutorial varadmeru$ python
+Python 2.7.5 (default, Aug 30 2013, 23:34:32) 
+[GCC 4.2.1 Compatible Apple LLVM 4.2 (clang-425.0.28)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import numpy as np
+>>> np.zeros((2,3))
+array([[ 0.,  0.,  0.],
+       [ 0.,  0.,  0.]])
+>>> np.ones((2,3))
+array([[ 1.,  1.,  1.],
+       [ 1.,  1.,  1.]])
+>>> np.empty((2,3))
+array([[  1.49166815e-154,  -2.00389161e+000,   1.15967020e-003],
+       [  0.00000000e+000,   1.29073640e-231,   4.21530905e-309]])
+>>> np.random.random((2,3))
+array([[ 0.98383788,  0.83704074,  0.59521108],
+       [ 0.93750779,  0.65198339,  0.07021561]])
+>>> randomArrays = np.random.random((2,3))
+>>> randomArrays
+array([[ 0.48770898,  0.43588375,  0.3832326 ],
+       [ 0.02834896,  0.78914119,  0.37900362]])
+>>> randomArrays[0,0]
+0.48770897527416412
+>>> randomArrays[0,1]
+0.43588374731768054
+>>> randomArrays[0,2]
+0.38323259935230591
+>>> foo = [ [1,2,3],
+...         [4,5,6]]
+>>> foo
+[[1, 2, 3], [4, 5, 6]]
+>>> myArray = np.array(foo)
+>>> myArray
+array([[1, 2, 3],
+       [4, 5, 6]])
+>>> rangeArray = np.arange(6,12)
+>>> rangeArray
+array([ 6,  7,  8,  9, 10, 11])
+>>> rangeArray.reshape((2,3))
+array([[ 6,  7,  8],
+       [ 9, 10, 11]])
+>>> rangeArray = rangeArray.reshape((2,3))
+>>> rangeArray
+array([[ 6,  7,  8],
+       [ 9, 10, 11]])
+>>> rangeArray.reshape((3,2))
+array([[ 6,  7],
+       [ 8,  9],
+       [10, 11]])
+>>> np.arange(1,10).reshape( (3,3) )
+array([[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]])
+>>> squareArray = np.arange(1,10).reshape( (3,3) )
+>>> print rangeArray[0,1]
+7
+>>> rangeArray
+array([[ 6,  7,  8],
+       [ 9, 10, 11]])
+>>> print rangeArray[0,0:2] 
+[6 7]
+>>> print squareArray[0:2,0:2]
+[[1 2]
+ [4 5]]
+>>> print squareArray[:,0:3:2]
+[[1 3]
+ [4 6]
+ [7 9]]
+>>> print squareArray[:,0::2]
+[[1 3]
+ [4 6]
+ [7 9]]
+>>> print squareArray[:,::2]
+[[1 3]
+ [4 6]
+ [7 9]]
+>>> print squareArray[:,::3]
+[[1]
+ [4]
+ [7]]
+>>> print squareArray[:,::1]
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+>>> 
+>>> 
+>>> 
+>>> fibIndices = np.array( [1, 1, 2, 3] )
+>>> randomRow = np.random.random( (10,1) )
+>>> randomRow
+array([[ 0.26095594],
+       [ 0.72333939],
+       [ 0.22596949],
+       [ 0.09088578],
+       [ 0.82225366],
+       [ 0.83222423],
+       [ 0.50579071],
+       [ 0.77930995],
+       [ 0.96362772],
+       [ 0.79093877]])
+>>> print randomRow[fibIndices]
+[[ 0.72333939]
+ [ 0.72333939]
+ [ 0.22596949]
+ [ 0.09088578]]
+>>> boolIndices = np.array( [[ True, False,  True],
+...                           [False,  True, False],
+...                           [ True, False,  True]] )
+>>> print squareArray[boolIndices] 
+[1 3 5 7 9]
+>>> squareArray
+array([[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]])
+>>> rows = np.array( [[0,0],[2,2]] )
+>>> cols = np.array( [[0,2],[0,2]] )
+>>> print squareArray[rows,cols]
+[[1 3]
+ [7 9]]
+>>> cols = np.array( [[0,1],[0,1]] )
+>>> print squareArray[rows,cols]
+[[1 2]
+ [7 8]]
+>>> cols = np.array( [[0,0],[0,1]] )
+>>> print squareArray[rows,cols]
+[[1 1]
+ [7 8]]
+>>> cols = np.array( [[0,2],[0,2]] )
+>>> print squareArray[rows,cols]
+[[1 3]
+ [7 9]]
+>>> rows
+array([[0, 0],
+       [2, 2]])
+>>> cols
+array([[0, 2],
+       [0, 2]])
+>>> squareArray
+array([[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]])
+>>> rows = np.array( [[1,1],[2,2]] )
+>>> cols = np.array( [[1,2],[1,2]] )
+>>> print squareArray[rows,cols]
+[[5 6]
+ [8 9]]
+>>> sqAverage = np.average(squareArray)
+>>> sqAverage
+5.0
+>>> betterThanAverage = squareArray > sqAverage
+>>> betterThanAverage
+array([[False, False, False],
+       [False, False,  True],
+       [ True,  True,  True]], dtype=bool)
+>>> squareArray[betterThanAverage]
+array([6, 7, 8, 9])
+>>> print squareArray[:,0:3:2]
+[[1 3]
+ [4 6]
+ [7 9]]
+>>> squareArray = np.arange(1,10).reshape( (3,3) )
+>>> squareArray[0,:] = np.array(range(1,4))
+>>> squareArray[1,1] = 0
+>>> squareArray[2,:] = 1
+>>> print squareArray
+[[1 2 3]
+ [4 0 6]
+ [1 1 1]]
+>>> sqAverage = np.average(squareArray)
+>>> sqAverage
+2.1111111111111112
+>>> betterThanAverage = squareArray > sqAverage
+>>> print betterThanAverage
+[[False False  True]
+ [ True False  True]
+ [False False False]]
+>>> squareArray[betterThanAverage]
+array([3, 4, 6])
+>>> squareArray.median
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'numpy.ndarray' object has no attribute 'median'
+>>> np.median(squareArray)
+1.0
+>>> np.average(squareArray)
+2.1111111111111112
+>>> np.sum(squareArray)
+19
+>>> np.sum(squareArray[:,0])
+6
+>>> sqAverage
+2.1111111111111112
+>>> sqStdDev = np.std(squareArray)
+>>> sqStdDev
+1.7916128329552334
+>>> clampedSqArray = np.array(squareArray.copy(), dtype=float)
+>>> clampedSqArray
+array([[ 1.,  2.,  3.],
+       [ 4.,  0.,  6.],
+       [ 1.,  1.,  1.]])
+>>> squareArray
+array([[1, 2, 3],
+       [4, 0, 6],
+       [1, 1, 1]])
+>>> clampedSqArray[ (squareArray-sqAverage) > sqStdDev ] = sqAverage+sqStdDev
+>>> clampedSqArray[ (squareArray-sqAverage) < -sqStdDev ] = sqAverage-sqStdDev
+>>> clampedSqArray
+array([[ 1.        ,  2.        ,  3.        ],
+       [ 3.90272394,  0.31949828,  3.90272394],
+       [ 1.        ,  1.        ,  1.        ]])
+>>>   squareArray = np.arange(1,10).reshape( (3,3) )
+  File "<stdin>", line 1
+    squareArray = np.arange(1,10).reshape( (3,3) )
+    ^
+IndentationError: unexpected indent
+>>> squareArray = np.arange(1,10).reshape( (3,3) )
+>>> matA = np.array( [[1,2],[3,4]] )
+>>> matB = np.array( [[5,6],[7,8]] )
+>>> print np.dot(matA,matB)
+[[19 22]
+ [43 50]]
+>>> 
+Varads-MacBook:NumPyTutorial varadmeru$ 
+Varads-MacBook:NumPyTutorial varadmeru$ 
+Varads-MacBook:NumPyTutorial varadmeru$ ls
+Varads-MacBook:NumPyTutorial varadmeru$ 

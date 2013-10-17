@@ -1,0 +1,19 @@
+Question 1
+The Sharpe ratio of the optimized portfolio using the parameter below lies in the range : 
+Equities = ['AAPL', 'GOOG', 'IBM', 'MSFT'] 
+Start Date = 1st January, 2010 
+End Date = 31st December, 2010 
+1.35 to 1.45
+1.65 to 1.75
+1.25 to 1.35
+1.45 to 1.55
+
+Question 2
+The Allocations of the optimized portfolio using the parameter below is : 
+Equities = ['BRCM', 'TXN', 'AMD', 'ADI'] 
+Start Date = 1st January, 2011 
+End Date = 31st December, 2011 
+[0.0, 0.0, 0.8, 0.2]
+[0.0, 0.0, 0.1, 0.9]
+[0.0, 0.0, 0.0, 1.0]
+[0.0, 0.2, 0.0, 0.8]
