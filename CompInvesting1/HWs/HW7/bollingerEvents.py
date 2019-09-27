@@ -1,6 +1,5 @@
 '''
 @author: Varad Meru
-@contact: varad.meru@gmail.com
 @summary: Homework 6 - Events based on Bollinger Bands
 '''
 
