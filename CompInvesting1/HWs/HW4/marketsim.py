@@ -31,62 +31,57 @@ def readOrdersFile(filename):
 
 	# opening the filename
 	fr = open(filename)
-	
+
 	# reading the file and getting the numberOfLines
 	numberOfLines = len(fr.readlines())
-	
+
 	# Making a zero matrix
 	ordersMatrix = np.zeros((numberOfLines, 6))
-	
+
 	#Empty List
 	symbolsList=[]
-	
+
 	#OrderType
 	orderTypes = ["Buy", "Sell"]
-	
+
 	# Re-initiating the file reader
 	fr = open(filename)
-	
+
 	# for row count in 
 	index=0
-	
+
 	# For each line
 	# A Sample Line - 2011,1,14,AAPL,Buy,1500
 	for orderString in fr.readlines():
 		
 		# Stripping off the return line character
 		orderString=orderString.strip()
-		
+
 		# Splitting the line and getting a List back
 		listFromLine = orderString.split(',')
 		updatedListFromLine = []
-		
-		if listFromLine[3] in symbolsList:
-			updatedListFromLine = listFromLine
-			updatedListFromLine[3] = symbolsList.index(listFromLine[3])
-			updatedListFromLine[4] = orderTypes.index(listFromLine[4])
-		else:
+
+		if listFromLine[3] not in symbolsList:
 			# Add that symbol into symbolsList
 			symbolsList.append(listFromLine[3])
-			updatedListFromLine = listFromLine
-			updatedListFromLine[3] = symbolsList.index(listFromLine[3])
-			updatedListFromLine[4] = orderTypes.index(listFromLine[4])
-			
+		updatedListFromLine = listFromLine
+		updatedListFromLine[3] = symbolsList.index(listFromLine[3])
+		updatedListFromLine[4] = orderTypes.index(listFromLine[4])
 		# Getting the first 6 entries from the listFromLine and putting it into returnMat with index.
 		# colon op - get all elements from row. (row number = index)
 		ordersMatrix[index,:]=updatedListFromLine[0:6]
-				
+
 		# incr.
 		index+=1
-	
+
 	# The Matrix created by NumPy is Float, converting into ints
 	integerMatrix = ordersMatrix.astype(int)
-	
+
 	# Sorting the matrix by date. Sorting the first 3 columns - 
 	# First column is Year, Second- month, Third- Day
 	# Sample - 2011,1,14,AAPL,Buy,1500,
 	sortedMatrix = np.array(sorted(integerMatrix, key=tuple))
-	
+
 	return sortedMatrix, symbolsList, orderTypes
 '''
 Above Method is Deprecated. Do not use it. Pandas Rules |m|

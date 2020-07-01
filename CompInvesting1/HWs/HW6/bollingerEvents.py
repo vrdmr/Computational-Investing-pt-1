@@ -33,21 +33,21 @@ def fetchNYSEDataForEvents(dt_start, dt_end, spxversion, marketSym):
 
 	# Creating an object of the dataaccess class with Yahoo as the source.
 	c_dataobj = da.DataAccess('Yahoo', cachestalltime=0)
-	
+
 	# Fetching the equities from the SPX verion
 	ls_symbols = c_dataobj.get_symbols_from_list(spxversion)
-	
+
 	#Appending the market symbol
 	ls_symbols.append(marketSym)
-	
+
 	# Keys to be read from the data, it is good to read everything in one go.
 	ls_keys = ['open', 'high', 'low', 'close', 'volume', 'actual_close']
-	
+
 	# Reading the data, now d_data is a dictionary with the keys above.
 	# Timestamps and symbols are the ones that were specified before.
 	ldf_data = c_dataobj.get_data(ldt_timestamps, ls_symbols, ls_keys)
 	d_data = dict(zip(ls_keys, ldf_data))
-	
+
 	timestampsForNYSEDays = d_data['close'].index
 
 	# Filling the data for NAN
@@ -55,30 +55,12 @@ def fetchNYSEDataForEvents(dt_start, dt_end, spxversion, marketSym):
 		d_data[s_key] = d_data[s_key].fillna(method='ffill')
 		d_data[s_key] = d_data[s_key].fillna(method='bfill')
 		d_data[s_key] = d_data[s_key].fillna(1.0)
-	
+
 	# Getting the numpy ndarray of close prices.
 	na_price = d_data['close'].values
-	
+
 	# returning the closed prices for all the days    
 	return na_price, ldt_timestamps, ls_symbols, d_data
-
-	'''
-   	 # Calculating the returns for this timestamp
-				f_symprice_today = df_close[s_sym].ix[ldt_timestamps[i]]
-				f_symprice_yest = df_close[s_sym].ix[ldt_timestamps[i - 1]]
-			
-				if f_symprice_today < 9.0 and f_symprice_yest >= 9.0:
-					today = ldt_timestamps[i]
-					todayplus5 = ldt_timestamps[i+5]
-				
-					writer.writerow([today.year, today.month, today.day , s_sym, "Buy","100"])
-					writer.writerow([todayplus5.year, todayplus5.month, todayplus5.day, s_sym, "Sell","100"])
-				
-					df_events[s_sym].ix[ldt_timestamps[i]] = 1
-					
-		# Closing the file
-		file.close()
-		'''
 
 def find_bollinger_events(df_bollingerValues):
 	''' Finding the event dataframe '''

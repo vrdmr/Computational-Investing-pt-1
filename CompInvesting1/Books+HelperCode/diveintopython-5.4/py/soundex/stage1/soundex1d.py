@@ -49,13 +49,13 @@ def soundex(source):
     if not source:
         return "0000"
     for c in source:
-        if not ('A' <= c <= 'Z') and not ('a' <= c <= 'z'):
+        if not ('A' <= c <= 'Z' or 'a' <= c <= 'z'):
             return "0000"
 
     # Soundex algorithm:
     # 1. make first character uppercase
     source = source[0].upper() + source[1:]
-    
+
     # 2. translate all other characters to Soundex digits
     digits = source[0]
     for s in source[1:]:
@@ -67,14 +67,14 @@ def soundex(source):
     for d in digits[1:]:
         if digits2[-1] != d:
             digits2 += d
-        
+
     # 4. remove all "9"s
     digits3 = re.sub('9', '', digits2)
-    
+
     # 5. pad end with "0"s to 4 characters
     while len(digits3) < 4:
         digits3 += "0"
-        
+
     # 6. return first 4 characters
     return digits3[:4]
 

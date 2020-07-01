@@ -204,9 +204,8 @@ class KantGenerator:
         completely ignored)
         """
         keys = node.attributes.keys()
-        if "class" in keys:
-            if node.attributes["class"].value == "sentence":
-                self.capitalizeNextWord = 1
+        if "class" in keys and node.attributes["class"].value == "sentence":
+            self.capitalizeNextWord = 1
         if "chance" in keys:
             chance = int(node.attributes["chance"].value)
             doit = (chance > random.randrange(100))

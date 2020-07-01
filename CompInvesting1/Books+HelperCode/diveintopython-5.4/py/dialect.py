@@ -154,12 +154,12 @@ def translate(url, dialectName="chef"):
 
 def test(url):
 	"""test all dialects against URL"""
+	import webbrowser
 	for dialect in ("chef", "fudd", "olde"):
 		outfile = "%s.html" % dialect
 		fsock = open(outfile, "wb")
 		fsock.write(translate(url, dialect))
 		fsock.close()
-		import webbrowser
 		webbrowser.open_new(outfile)
 	
 if __name__ == "__main__":

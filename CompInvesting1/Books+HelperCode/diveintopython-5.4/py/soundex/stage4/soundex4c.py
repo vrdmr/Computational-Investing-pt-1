@@ -22,7 +22,7 @@ def soundex(source):
     # Soundex requirements:
     # source string must be at least 1 character
     # and must consist entirely of letters
-    if (not source) or (not source.isalpha()):
+    if not (source and source.isalpha()):
         return "0000"
 
     # Soundex algorithm:
@@ -35,13 +35,13 @@ def soundex(source):
     for d in digits[1:]:
         if digits2[-1] != d:
             digits2 += d
-        
+
     # 4. remove all "9"s
     digits3 = digits2.replace('9', '')
-    
+
     # 5. pad end with "0"s to 4 characters
     digits3 += '000'
-    
+
     # 6. return first 4 characters
     return digits3[:4]
 
